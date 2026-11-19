@@ -1,56 +1,60 @@
 Library Management System | PostgreSQL
 Author: Richie Johns Kareekunnel
-Database: library_db | Level: Intermediate | Tech: PostgreSQL, PL/pgSQL
+Database: library_db | Tech: PostgreSQL, SQL
 
-End-to-end Library Management System — schema design, CRUD, CTAS, business analysis and stored procedures.
-Built to answer real management questions: overdue books, branch performance, rental revenue, active members and fines.
+Library Management System in PostgreSQL — database setup, CRUD, CTAS and data analysis. 17 tasks in total.
 
-Business Questions Answered
-Which books are overdue and by how many days?
-How much rental revenue by category and by branch?
-Which books have not been returned?
-Who are the top 3 employees by books processed?
-Who are active members (issued in last 6 months)?
-What are overdue fines at $0.50 / day?
+What This Project Covers
+Database Setup: 6 tables — branch, employees, members, books, issued_status, return_status
+
+Tasks Covered — 17 Tasks
+
+CRUD Operations
+Task 1: Create a New Book Record
+Task 2: Update an Existing Member's Address
+Task 3: Delete a Record from the Issued Status Table
+Task 4: Retrieve All Books Issued by a Specific Employee
+Task 5: List Members Who Have Issued More Than One Book
+
+CTAS
+Task 6: Create Summary Table — book_issued_summary (each book + total issued count)
+Data Analysis & Findings
+Task 7: Retrieve All Books in a Specific Category
+Task 8: Find Total Rental Income by Category
+Task 9: List Members Who Registered in the Last 180 Days
+Task 10: List Employees with Their Branch Manager's Name and Branch Details
+Task 11: Create a Table of Books with Rental Price Above a Threshold — expensive_books
+Task 12: Retrieve the List of Books Not Yet Returned
+
+Advanced SQL Operations
+Task 13: Identify Members with Overdue Books (30-day return period)
+Task 14: Branch Performance Report — books issued, books returned, total revenue
+Task 15: CTAS — Create a Table of Active Members (issued in last 6 months)
+Task 16: Find Employees with the Most Book Issues Processed (Top 3)
+Task 17: Identify Members Issuing High-Risk Books (status = 'damaged', more than twice)
+
 Project Structure
+
 library-management-system-sql/
-├── library_management_system.sql  # Complete project - run this one file
+├── Library-Management-System-ORIGINAL.sql  # Complete project - Tasks 1 to 17
 ├── README.md
-└── docs/data_dictionary.md
-Database Schema - 6 Tables
-Table	Purpose
-branch	Branch + manager
-employees	Staff + branch link
-members	Library members
-books	Book catalogue + status
-issued_status	Books issued
-return_status	Books returned + quality
-ERD: branch (1) -> employees (N), employees (1) -> issued_status (N), members (1) -> issued_status (N), books (1) -> issued_status (N)
+└── LICENSE
 
 How To Run
 # 1. Clone
 git clone https://github.com/RICHIEANALYTICS/library-management-system-sql.git
 
 # 2. Run in PostgreSQL
-psql -U postgres -f library_management_system.sql
+psql -U postgres -f Library-Management-System-ORIGINAL.sql
 
-# 3. Test procedures
-CALL issue_book('IS155', 'C108', '978-0-553-29698-2', 'E104');
-CALL add_return_records('RS138', 'IS135', 'Good');
 Key SQL Skills Demonstrated
-Database design, PK / FK, CHECK constraints
-CRUD, JOINs (INNER / LEFT / Self-Join), GROUP BY / HAVING
-Subqueries, CTAS, Views-style summary tables
-Window-style aggregation, Date arithmetic (CURRENT_DATE - INTERVAL)
-Stored Procedures in PL/pgSQL, RAISE NOTICE, transaction logic
-Reporting: Branch Performance, Overdue Fines, Active Members
-What I Fixed / Improved
-Task 5 corrected: members grouped by member_id (not employee)
-Task 17 completed: damaged-book logic with HAVING > 2
-Task 20 completed: Overdue fines CTAS with $0.50/day
-Added book_quality to return_status, CHECK on book status, ON CONFLICT handling
-Learning Note
-Built independently through hands-on practice following SQL mentorship on database design and querying.
 
+Database design, Primary Key / Foreign Key
+CRUD Operations
+JOINs (INNER / LEFT / Self-Join), GROUP BY / HAVING
+CTAS (Create Table As Select)
+Date functions — CURRENT_DATE - INTERVAL
+Aggregations — COUNT, SUM, COUNT(DISTINCT)
 Connect
 LinkedIn: linkedin.com/in/richie- | GitHub: github.com/RICHIEANALYTICS
+
